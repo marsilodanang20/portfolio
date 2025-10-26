@@ -65,8 +65,8 @@ export default function About() {
         <pre className="text-foreground">
           {`// about
 const developer = {
-  name: 'Danang',
-  role: 'Fullstack Developer',
+  name: 'Marsilo Danang',
+  role: 'Newbie Developer',
   location: 'Indonesia',
   passion: 'Building beautiful and performant web applications'
 };`}
