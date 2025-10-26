@@ -36,7 +36,7 @@ export default function Hero() {
           <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
             Hi, I'm
             <br />
-            <span className="text-primary">Danang</span>
+            <span className="text-primary">Marsilo Danang</span>
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground mb-8 leading-relaxed">
             Fullstack Developer | Building modern web applications with clean code and beautiful design.
@@ -48,7 +48,7 @@ export default function Hero() {
             whileTap={{ scale: 0.95 }}
             className="inline-block px-6 py-3 border-2 border-foreground hover:bg-foreground hover:text-background transition-colors font-medium cursor-pointer"
           >
-            View My Work
+            View My Project
           </motion.a>
         </div>
 
