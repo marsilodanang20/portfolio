@@ -21,7 +21,7 @@ export default function Education() {
     },
     {
       level: "Bachelor of Informatics Engineering",
-      school: "Universitas Muhammadiyah Cirebon",
+      school: "UNIVERSITAS MUHAMMADIYAH CIREBON",
       year: "2022 - Present",
     },
   ]
