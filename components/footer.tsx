@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border pt-8">
-          <p className="text-sm text-muted-foreground text-center">© {currentYear} Danang. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground text-center">© {currentYear} Marsilodanang. All rights reserved.</p>
         </div>
       </motion.div>
     </footer>
