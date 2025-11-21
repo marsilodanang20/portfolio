@@ -4,16 +4,7 @@ import { motion } from "framer-motion"
 
 export default function Education() {
   const educationData = [
-    {
-      level: "Elementary School",
-      school: "SDN 1 KARANGWANGUN",
-      year: "2010 - 2016",
-    },
-    {
-      level: "Junior High School",
-      school: "MTsN 1 CIREBON",
-      year: "2016 - 2019",
-    },
+    
     {
       level: "Senior High School",
       school: "MA AL-HIKMAH CIREBON",
