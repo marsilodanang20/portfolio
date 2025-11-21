@@ -66,7 +66,7 @@ export default function About() {
           {`// about
 const developer = {
   name: 'Marsilo Danang',
-  role: 'Newbie Developer',
+  role: 'FullStack Developer',
   location: 'Indonesia',
   passion: 'Building beautiful and performant web applications'
 };`}
