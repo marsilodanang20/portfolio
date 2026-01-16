@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export default function Education() {
   const educationData = [
-    
+
     {
       level: "Senior High School",
       school: "MA AL-HIKMAH CIREBON",
@@ -33,7 +33,7 @@ export default function Education() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.8, ease: "easeOut" as const },
     },
   }
 

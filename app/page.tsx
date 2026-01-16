@@ -3,12 +3,16 @@
 import { useState, useEffect } from "react"
 import Header from "@/components/header"
 import Hero from "@/components/hero"
-import Education from "@/components/education"
+// import Education from "@/components/education" 
 import Projects from "@/components/projects"
+import Services from "@/components/services"
+import VelocityScroll from "@/components/velocity-scroll"
 import About from "@/components/about"
+import ValueProposition from "@/components/value-proposition"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import SectionDivider from "@/components/section-divider"
+import SplashCursor from "@/components/splash-cursor"
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
@@ -50,20 +54,27 @@ export default function Home() {
     }
   }, [])
 
+  // Prevent hydration mismatch
   if (!mounted) return null
 
   return (
     <div className={isDark ? "dark" : ""}>
-      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300 relative">
+        <SplashCursor />
+
         <Header isDark={isDark} setIsDark={setIsDark} />
         <SectionDivider isVisible={showDivider} />
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <main>
           <Hero />
-          <Education />
+          <VelocityScroll />
+          <ValueProposition />
+          <Services />
           <Projects />
           <About />
           <Contact />
         </main>
+
         <Footer />
       </div>
     </div>

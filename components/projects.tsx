@@ -1,164 +1,186 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import Image from "next/image"
-import { Github, ExternalLink } from "lucide-react"
+import { Github, ExternalLink, ArrowRight } from "lucide-react"
 
 export default function Projects() {
   const projects = [
     {
-      title: "AUTO KLINIK",
-      description: "E-commerce penjualan sparepart motor dengan fitur lengkap untuk manajemen produk dan penjualan.",
-      tech: ["HTML", "CSS", "JavaScript", "MySQL"],
+      title: "Distribusi Baznas",
+      description: "Sistem informasi distribusi zakat BAZNAS Kabupaten Cirebon. Memudahkan pelacakan penyaluran dana zakat kepada penerima manfaat secara transparan dan akurat.",
+      tech: ["Laravel", "PHP", "Bootstrap", "MySQL"],
+      image: "/images/gambar7.png",
+      github: "https://github.com/marsilodanang20/distribusi-zakat",
+      demo: "https://distribusi-baznas.gt.tc",
+      tags: ["Web App", "Management System"],
+      features: "Real-time Tracking, Reporting, User Management"
+    },
+    {
+      title: "Buku Tamu Baznas",
+      description: "Platform digitalisasi buku tamu kantor BAZNAS. Menggantikan proses manual dengan sistem digital yang efisien untuk pendataan pengunjung dan keperluan administratif.",
+      tech: ["Laravel", "PHP", "Bootstrap", "MySQL"],
+      image: "/images/gambar8.png",
+      github: "https://github.com/marsilodanang20/Bukutamu-Baznas",
+      demo: "https://bukutamu-baznas.wuaze.com",
+      tags: ["Digitalization", "Office Tool"],
+      features: "Data Export, Guest Analytics, Secure Auth"
+    },
+    {
+      title: "E-Commerce Laravel + Midtrans",
+      description: "Platform toko online lengkap dengan integrasi pembayaran otomatis. Mendukung manajemen produk, keranjang belanja, dan notifikasi real-time.",
+      tech: ["Laravel", "PHP", "Bootstrap", "MySQL", "Midtrans"],
+      image: "/images/gambar9.png",
+      github: "Private Repository",
+      demo: "https://autoklinik.wuaze.com",
+      tags: ["E-Commerce", "Payment Gateway"],
+      features: "Payment Integration, Order Management, Real-time status"
+    },
+    {
+      title: "Auto Klinik",
+      description: "E-commerce spesialis penjualan sparepart motor. Menyediakan antarmuka yang ramah pengguna untuk pencarian dan pembelian suku cadang kendaraan.",
+      tech: ["HTML", "CSS", "JavaScript"],
       image: "/images/gambar1.png",
       github: "https://github.com/marsilodanang20/web",
       demo: "https://marsilodanang20.github.io/web/",
+      tags: ["Frontend", "E-Commerce"],
+      features: "Responsive Design, Product Catalog, Search Filter"
     },
     {
       title: "Portal Desa Ciawiasih",
-      description: "Portal desa dengan layanan desa, informasi, dan publikasi digital untuk masyarakat desa.",
+      description: "Portal resmi desa pelayanan publik dan informasi digital. Membantu transparansi pemerintahan desa dan aksesibilitas layanan bagi warga.",
       tech: ["React", "Next.js", "TypeScript"],
       image: "/images/gambar2.png",
       github: "https://github.com/marsilodanang20/portal_desa",
       demo: "https://profildesaciawiasih.vercel.app/",
+      tags: ["Public Service", "Portal"],
+      features: "News Portal, Public Service Info, Interactive Map"
     },
     {
       title: "UMKM Desa Ciawiasih",
-      description: "Platform profil UMKM desa untuk menampilkan produk dan layanan usaha mikro kecil menengah.",
+      description: "Marketplace lokal untuk pemberdayaan UMKM desa. Wadah promosi produk-produk lokal agar dapat menjangkau pasar yang lebih luas.",
       tech: ["React", "Next.js", "TypeScript"],
       image: "/images/gambar3.png",
       github: "https://github.com/marsilodanang20/umkm_ciawiasih",
       demo: "https://profilumkmciawiasih.vercel.app/",
-    },
-    {
-      title: "Advantage Dealer Motor",
-      description: "Sistem inventaris dan penjualan untuk dealer motor dengan dashboard admin yang komprehensif.",
-      tech: ["PHP", "Bootstrap", "JavaScript", "MySQL"],
-      image: "/images/gambar4.png",
-      github: "https://github.com/marsilodanang20/App_dealermotor",
-      demo: "coming-soon",
-    },
-    {
-      title: "UMKM Jagapura Lor",
-      description: "Platform profil UMKM desa Jagapura Lor untuk showcase produk dan layanan lokal.",
-      tech: ["React", "Next.js", "TypeScript"],
-      image: "/images/gambar5.png",
-      github: "https://github.com/marsilodanang20/umkm-jagapura-lor",
-      demo: "https://umkm-jagapura-lor.vercel.app/",
-    },
-    {
-      title: "Tata Surya Edukasi",
-      description: "Website edukasi interaktif tentang tata surya dengan visualisasi planet dan informasi lengkap.",
-      tech: ["React", "Next.js", "TypeScript"],
-      image: "/images/gambar6.png",
-      github: "https://github.com/marsilodanang20/tatasurya",
-      demo: "https://tatasurya-eight.vercel.app/",
+      tags: ["Marketplace", "SME Support"],
+      features: "Product Showcase, Seller Profile, Direct Contact"
     },
   ]
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
         delayChildren: 0.1,
       },
     },
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   }
 
   return (
     <section id="projects" className="py-20 sm:py-32">
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-4xl font-bold mb-12 text-center"
-      >
-        &lt;Projects /&gt;
-      </motion.h2>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-16 text-center"
+        >
+          <h2 className="text-4xl font-bold mb-4">&lt;Featured Projects /&gt;</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            A selection of my best work, demonstrating my capability to solve real-world problems with code.
+          </p>
+        </motion.div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            whileHover={{ y: -5 }}
-            className="border-2 border-foreground overflow-hidden hover:shadow-lg transition-shadow"
-          >
-            <div className="relative w-full h-48 overflow-hidden bg-muted">
-              <Image
-                src={project.image || "/placeholder.svg"}
-                alt={project.title}
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tech.map((tech, techIndex) => (
-                  <span key={techIndex} className="text-xs px-2 py-1 border border-foreground rounded">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-4">
-                <motion.a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2 border border-foreground text-sm hover:bg-foreground hover:text-background transition-colors"
-                >
-                  <Github className="w-4 h-4" />
-                  Code
-                </motion.a>
-                {project.demo !== "coming-soon" && (
-                  <motion.a
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="group bg-card border border-border rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full"
+            >
+              <div className="relative w-full aspect-[16/10] overflow-hidden bg-muted">
+                <Image
+                  src={project.image || "/placeholder.svg"}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  {project.github !== "Private Repository" && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-white text-black rounded-full hover:scale-110 transition-transform"
+                      title="View Code"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                  )}
+                  <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-4 py-2 border border-foreground text-sm hover:bg-foreground hover:text-background transition-colors"
+                    className="p-3 bg-primary text-primary-foreground rounded-full hover:scale-110 transition-transform"
+                    title="Live Demo"
                   >
-                    <ExternalLink className="w-4 h-4" />
-                    Demo
-                  </motion.a>
-                )}
-                {project.demo === "coming-soon" && (
-                  <span className="flex items-center gap-2 px-4 py-2 border border-muted-foreground text-sm text-muted-foreground">
-                    <ExternalLink className="w-4 h-4" />
-                    Coming Soon
-                  </span>
-                )}
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex justify-between items-start mb-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">
+                    {project.tags[0]}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">{project.description}</p>
+
+                <div className="mb-6">
+                  <p className="text-sm font-semibold mb-2 text-foreground/80">Key Features:</p>
+                  <p className="text-sm text-muted-foreground">{project.features}</p>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-border mt-auto">
+                  {project.tech.map((tech, techIndex) => (
+                    <span key={techIndex} className="text-xs font-medium px-2 py-1 bg-muted text-muted-foreground rounded">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <div className="mt-16 text-center">
+          <a href="https://github.com/marsilodanang20" target="_blank" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
+            View more on GitHub <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
     </section>
   )
 }
