@@ -81,7 +81,7 @@ export default function Hero() {
                 href="#projects"
                 className="px-8 py-5 border border-border bg-card/50 backdrop-blur-md hover:bg-muted text-foreground rounded-2xl font-bold transition-all active:scale-95 w-full sm:w-auto text-center"
               >
-                View Catalog
+                View Projects
               </a>
             </motion.div>
 
