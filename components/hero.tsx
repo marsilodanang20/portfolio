@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, type Variants } from "framer-motion"
-import { ArrowRight, Database, Code2 } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 import Lanyard from "@/components/lanyard"
 
 export default function Hero() {
@@ -10,8 +10,8 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   }
@@ -21,76 +21,92 @@ export default function Hero() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
     },
   }
 
   return (
-    <section id="home" className="pt-24 pb-12 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 flex items-start min-h-[calc(100vh-80px)] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section id="home" className="relative w-full min-h-screen flex items-center pt-24 pb-12 lg:pt-0 lg:pb-0 overflow-hidden bg-background">
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -z-10" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
         >
-          {/* Left Content (Text) */}
-          <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left z-20 relative">
-            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
-              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium border border-primary/20 backdrop-blur-sm">
-                Professional Web Developer
-              </span>
+          {/* Lanyard Section: Above text on mobile for better visual flow, or below if text is prioritized */}
+          {/* I will keep text on top for mobile (order-1) and lanyard below (order-2) as per standard UX */}
+
+          {/* Typography Content */}
+          <div className="order-1 lg:order-2 lg:col-span-7 flex flex-col items-center lg:items-end text-center lg:text-right z-20">
+            <motion.div variants={itemVariants} className="mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 shadow-sm backdrop-blur-md">
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <span className="text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] font-jakarta">
+                  Web & Software Engineering
+                </span>
+              </div>
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight">
-              Hi, I&apos;m <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 block my-2">
-                Marsilo Danang
-              </span>
-              <span className="text-2xl sm:text-4xl lg:text-5xl font-semibold text-muted-foreground block">
-                And I&apos;m a Web Developer
-              </span>
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl sm:text-7xl lg:text-[6.5rem] font-black font-jakarta leading-[0.9] tracking-tighter mb-8 text-foreground"
+            >
+              Building <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-l from-foreground via-foreground/80 to-foreground/40">
+                Premium
+              </span> <br />
+              Experiences.
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-              I help businesses and startups create high-performance web applications using Laravel and Modern Frontend Technologies. Clean code, secure, and built to scale.
+            <motion.p
+              variants={itemVariants}
+              className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl lg:max-w-md font-sans font-light"
+            >
+              Hi, I&apos;m <span className="text-foreground font-semibold">Marsilo Danang W.</span> Specializing in creating high-performance web applications using <span className="text-foreground font-medium">Laravel</span> and <span className="text-foreground font-medium">Modern React</span>.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap justify-center lg:justify-start gap-4">
+            <motion.div variants={itemVariants} className="flex flex-wrap justify-center lg:justify-end gap-4 w-full sm:w-auto">
               <a
                 href="#contact"
-                className="px-6 py-3 sm:px-8 sm:py-4 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all flex items-center gap-2 shadow-lg hover:shadow-primary/20 hover:-translate-y-1 text-sm sm:text-base"
+                className="group px-8 py-5 bg-primary text-primary-foreground rounded-2xl font-bold flex items-center justify-center gap-3 transition-all hover:shadow-[0_20px_40px_-15px_rgba(var(--primary),0.3)] hover:-translate-y-1 active:scale-95 w-full sm:w-auto"
               >
-                Start Your Project
-                <ArrowRight className="w-4 h-4" />
+                Let&apos;s Talk Business
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
               </a>
               <a
                 href="#projects"
-                className="px-6 py-3 sm:px-8 sm:py-4 border border-input bg-background hover:bg-muted text-foreground rounded-lg font-medium transition-colors flex items-center gap-2 text-sm sm:text-base"
+                className="px-8 py-5 border border-border bg-card/50 backdrop-blur-md hover:bg-muted text-foreground rounded-2xl font-bold transition-all active:scale-95 w-full sm:w-auto text-center"
               >
-                View Portfolio
+                View Catalog
               </a>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="mt-10 sm:mt-12 flex justify-center lg:justify-start items-center gap-6 sm:gap-10 text-muted-foreground grayscale hover:grayscale-0 transition-all duration-500">
-              <div className="flex items-center gap-3">
-                <span className="font-bold text-2xl sm:text-3xl text-foreground">100%</span>
-                <span className="text-xs sm:text-sm leading-tight text-left">Client<br />Satisfaction</span>
+            <motion.div variants={itemVariants} className="mt-16 flex items-center justify-center lg:justify-end gap-12 opacity-60">
+              <div className="flex flex-col items-center lg:items-end">
+                <span className="text-3xl font-black font-jakarta tracking-tighter text-foreground">100%</span>
+                <span className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground">Satisfaction</span>
               </div>
-              <div className="w-px h-10 bg-border"></div>
-              <div className="flex items-center gap-3">
-                <span className="font-bold text-2xl sm:text-3xl text-foreground">10+</span>
-                <span className="text-xs sm:text-sm leading-tight text-left">Projects<br />Completed</span>
+              <div className="w-px h-8 bg-border" />
+              <div className="flex flex-col items-center lg:items-end">
+                <span className="text-3xl font-black font-jakarta tracking-tighter text-foreground">12+</span>
+                <span className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground">Completed</span>
               </div>
             </motion.div>
           </div>
 
-          {/* Right Content: Lanyard Interaction */}
+          {/* Lanyard Card Interaction */}
           <motion.div
             variants={itemVariants}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end h-[500px] sm:h-[600px] lg:h-[700px] w-full relative z-10 -mt-10 lg:mt-0"
+            className="order-2 lg:order-1 lg:col-span-5 h-[450px] sm:h-[600px] lg:h-[800px] w-full flex items-center justify-center relative z-10"
           >
-            <Lanyard position={[0, 0, 10]} gravity={[0, -40, 0]} />
+            <div className="w-full h-full relative group">
+              <div className="absolute inset-x-0 top-0 bottom-0 bg-primary/5 rounded-[40px] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+              <Lanyard position={[0, 0, 13]} gravity={[0, -40, 0]} />
+            </div>
           </motion.div>
         </motion.div>
       </div>

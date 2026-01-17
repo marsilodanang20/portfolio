@@ -1,16 +1,19 @@
 "use client"
 
 import { Moon, Sun, Menu, X } from "lucide-react"
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useTheme } from "next-themes"
 
-interface HeaderProps {
-  isDark: boolean
-  setIsDark: (value: boolean) => void
-}
-
-export default function Header({ isDark, setIsDark }: HeaderProps) {
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Ensure component is mounted to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -20,9 +23,15 @@ export default function Header({ isDark, setIsDark }: HeaderProps) {
     { label: "Contact", href: "#contact" },
   ]
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
+
+  if (!mounted) return null
+
   return (
-    <header className="border-b border-border sticky top-0 bg-background/95 backdrop-blur-sm z-50">
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 border-b border-white/5 bg-background/80 backdrop-blur-md z-[100] transition-colors duration-300">
+      <nav className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -32,47 +41,41 @@ export default function Header({ isDark, setIsDark }: HeaderProps) {
           &lt;d/&gt;
         </motion.div>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item, index) => (
-            <motion.a
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-10">
+          {navItems.map((item) => (
+            <a
               key={item.label}
               href={item.href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-sm relative group"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 relative group py-2"
             >
               {item.label}
               <motion.span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-            </motion.a>
+            </a>
           ))}
 
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsDark(!isDark)}
-            className="p-2 rounded-full border border-border hover:bg-muted transition-colors"
+          <button
+            onClick={toggleTheme}
+            className="p-2.5 rounded-xl border border-border bg-card hover:bg-muted transition-all duration-300 shadow-sm"
             aria-label="Toggle dark mode"
           >
-            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </motion.button>
+            {theme === "dark" ? <Sun className="w-4 h-4 text-orange-400" /> : <Moon className="w-4 h-4 text-blue-600" />}
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center gap-2">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsDark(!isDark)}
-            className="p-2 rounded-full border border-border hover:bg-muted transition-colors"
+        <div className="flex md:hidden items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className="p-2.5 rounded-xl border border-border bg-card shadow-sm"
             aria-label="Toggle dark mode"
           >
-            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </motion.button>
+            {theme === "dark" ? <Sun className="w-4 h-4 text-orange-400" /> : <Moon className="w-4 h-4 text-blue-600" />}
+          </button>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-full border border-border hover:bg-muted transition-colors"
+            className="p-2.5 rounded-xl border border-border bg-card shadow-sm"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -80,32 +83,30 @@ export default function Header({ isDark, setIsDark }: HeaderProps) {
         </div>
       </nav>
 
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20, height: 0 }}
-          animate={{ opacity: 1, y: 0, height: "auto" }}
-          exit={{ opacity: 0, y: -20, height: 0 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden border-t border-border bg-background/95 backdrop-blur-sm"
-        >
-          <div className="px-4 py-6 space-y-2">
-            {navItems.map((item, index) => (
-              <motion.a
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="block text-sm px-4 py-3 rounded-lg hover:bg-muted hover:text-primary transition-all duration-200 relative group"
-              >
-                {item.label}
-                <motion.span className="absolute bottom-2 left-4 w-0 h-0.5 bg-primary group-hover:w-12 transition-all duration-300" />
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      {/* Mobile Nav Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-border bg-background"
+          >
+            <div className="px-6 py-8 space-y-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block text-xl font-bold py-4 border-b border-border transition-all active:pl-4"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

@@ -172,14 +172,20 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
                     delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
                 );
             });
-            curve.points[0].copy(j3.current.translation());
-            curve.points[1].copy(j2.current.lerped);
-            curve.points[2].copy(j1.current.lerped);
-            curve.points[3].copy(fixed.current.translation());
+            if (j1.current && j2.current && j3.current && fixed.current) {
+                const t1 = j1.current.lerped;
+                const t2 = j2.current.lerped;
+                const t3 = j3.current.translation();
+                const t4 = fixed.current.translation();
 
-            // Validate points before setting geometry to prevent NaN errors
-            if (curve.points.every((p: THREE.Vector3) => !isNaN(p.x) && !isNaN(p.y) && !isNaN(p.z))) {
-                band.current.geometry.setPoints(curve.getPoints(32));
+                if (t1 && t2 && t3 && t4 &&
+                    !isNaN(t1.x) && !isNaN(t2.x) && !isNaN(t3.x) && !isNaN(t4.x)) {
+                    curve.points[0].copy(t3);
+                    curve.points[1].copy(t2);
+                    curve.points[2].copy(t1);
+                    curve.points[3].copy(t4);
+                    band.current.geometry.setPoints(curve.getPoints(32));
+                }
             }
             ang.copy(card.current.angvel());
             rot.copy(card.current.rotation());

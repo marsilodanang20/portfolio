@@ -71,7 +71,7 @@ export default function SplashCursor({
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
-        // Disable on mobile/small screens (typically < 768px)
+        // Disable on mobile/small screens (typically < 768px) for performance
         if (typeof window !== 'undefined' && window.innerWidth < 768) return;
 
         const canvas = canvasRef.current;
@@ -799,6 +799,9 @@ export default function SplashCursor({
             const rgba = ext!.formatRGBA;
             const rg = ext!.formatRG;
             const r = ext!.formatR;
+
+            if (!rgba || !rg || !r) return;
+
             const filtering = ext!.supportLinearFiltering ? gl!.LINEAR : gl!.NEAREST;
             gl!.disable(gl!.BLEND);
 
